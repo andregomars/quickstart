@@ -15,6 +15,7 @@ import { Hero } from './hero';
 export class HeroDetailComponent implements OnInit {
 	// @Input()
 	hero: Hero;
+	heroes: Hero[];
 
 	constructor(
 		private heroService: HeroService,
@@ -31,5 +32,10 @@ export class HeroDetailComponent implements OnInit {
 
 	goBack(): void {
 		this.location.back();
+	}
+
+	save(): void {
+		this.heroService.update(this.hero)
+			.then(() => this.goBack());
 	}
 }
